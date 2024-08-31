@@ -1,0 +1,2 @@
+/vendor/
+/.devops/mysql/dbdata/**/*
