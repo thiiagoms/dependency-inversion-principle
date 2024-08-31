@@ -1,0 +1,15 @@
+{
+    "name": "thiiagoms/dip-php",
+    "description": "Dependency Inversion Principle (DIP) in PHP for Composer Packages:",
+    "autoload": {
+        "psr-4": {
+            "Thiiagoms\\DIP\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "thiiagoms",
+            "email": "thiagom.devsec@gmail.com"
+        }
+    ]
+}
