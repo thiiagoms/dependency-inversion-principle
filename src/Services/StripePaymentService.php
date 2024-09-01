@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Thiiagoms\DIP\Services;
 
-class StripePaymentService
+use Thiiagoms\DIP\Contracts\StripePaymentContract;
+
+class StripePaymentService implements StripePaymentContract
 {
     public function process(string $total): string
     {

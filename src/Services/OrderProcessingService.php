@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Thiiagoms\DIP\Services;
 
+use Thiiagoms\DIP\Contracts\DiscountContract;
+use Thiiagoms\DIP\Contracts\StripePaymentContract;
 use Thiiagoms\DIP\Exception\NotFoundException;
 use Thiiagoms\DIP\Repositories\Product\ProductContract;
 use Thiiagoms\DIP\Repositories\Stock\StockContract;
@@ -16,8 +18,8 @@ class OrderProcessingService
     public function __construct(
         private readonly ProductContract $productRepository,
         private readonly StockContract $stockRepository,
-        private readonly DiscountService $discountService,
-        private readonly StripePaymentService $stripePaymentService
+        private readonly DiscountContract $discountContract,
+        private readonly StripePaymentContract $stripePaymentContract
     ) {}
 
     private function checkAvailability(int $quantity): void
@@ -35,9 +37,9 @@ class OrderProcessingService
 
         $this->checkAvailability($stock->quantity);
 
-        $total = $this->discountService->with($product)->applySpecialDiscount();
+        $total = $this->discountContract->with($product)->applySpecialDiscount();
 
-        $paymentSuccessMessage = $this->stripePaymentService->process($total);
+        $paymentSuccessMessage = $this->stripePaymentContract->process($total);
 
         $this->stockRepository->record($product->id, $stock->quantity - 1);
 

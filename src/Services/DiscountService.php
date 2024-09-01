@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Thiiagoms\DIP\Services;
 
+use Thiiagoms\DIP\Contracts\DiscountContract;
 use Thiiagoms\DIP\Entities\Product;
 
-class DiscountService
+class DiscountService implements DiscountContract
 {
     protected Product $product;
 
